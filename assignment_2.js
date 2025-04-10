@@ -1,7 +1,12 @@
 function main() {
     console.log("Uppgift 2.");
-
-    // Er lösning
+    let tisdag = "Tisdag";
+    let hamburgare = "Hamburgare"
+    let fras = "I'll be back!";
+    
+    console.log(tisdag.substring(0,3));
+    console.log(hamburgare.substring(3))
+    console.log(fras.substring(5,12))
 
 }
 

@@ -8,7 +8,7 @@ function main() {
     let learningToUpper = learning.substring(5,13)
     console.log(learningToUpper.toUpperCase());
 
-    let goodPartsToLower = javascript.substring(16,25)
+    let goodPartsToLower = javascript.substring(16,26)
     console.log(goodPartsToLower.toLowerCase())
 
     let goodToUpper = javascript.substring(16, 20)

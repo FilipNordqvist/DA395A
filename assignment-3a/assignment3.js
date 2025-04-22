@@ -12,9 +12,7 @@ $("h2").hover(function(){
 
   //När användaren dubbelklickar på en paragraf ska textstorleken öka (den ska öka för varje gång dom dubbelklickar).
   $("p").dblclick(function(){
-    var currentSize = $("body").css("font-size");
+    var currentSize = parseFloat($("body").css("font-size")); //parsar jag inte får jag en etta efter 16px1
     var newSize = currentSize + 1;
-    $(this).css("font-size", "newSize");
-  }, function(){
-   
+    $(this).css({"font-size": newSize + "px"});
   });

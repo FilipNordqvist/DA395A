@@ -11,14 +11,10 @@ $("h2").hover(function(){
   });
 
   //När användaren dubbelklickar på en paragraf ska textstorleken öka (den ska öka för varje gång dom dubbelklickar).
-  $("p").dbclick(function(){
-    var currentFontSize = $(section).css('font-size');
-    var currentFontSizeNum = parseFloat(currentFontSize, 10);
-    var newFontSize = currentFontSizeNum*1.2;
-    $(section).css('font-size', newFontSize);
-    return false;
-});
-  
-  $("p").on("dbclick", function() {
-    $(this).css("color", "blue");
-});
+  $("p").dblclick(function(){
+    var currentSize = $("body").css("font-size");
+    var newSize = currentSize + 1;
+    $(this).css("font-size", "newSize");
+  }, function(){
+   
+  });

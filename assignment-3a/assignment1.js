@@ -17,7 +17,3 @@ $('h1').css('color', 'blue');
 
 //Ge länkarna på webbplatsen gul textfärg och gör så att de inte längre är understrukna.
 $("a").css({"background-color": "yellow", "text-decoration": "none"});
-
-//Ta reda på vilken bakgrundsfärg webbplatsen har.
-let  bg = $('body').css('background-color');
-console.log('Karate TANTEN!!')

@@ -21,9 +21,6 @@ $("#newsletter-form").on("submit", function (e) {
     var epost = $("#email-field").val();
     $("#email-field").css("background-color", "white");
   }
-
-  // Här placerar ni er validerings kod.
-
   // Om allting var korrekt - skicka vidare användaren.
   $("#newsletter-form")[0].submit();
 });

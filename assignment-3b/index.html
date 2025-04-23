@@ -36,29 +36,34 @@
       
       if(movieTitle.length >= 3){
         const response = await fetch("http://www.omdbapi.com/?t=" + movieTitle + "&apikey=f9bc0366&t");
-      
         const data = await response.json();
-      console.log(data);
+        const image = data.Poster;
+        const year = data.Year;
+        console.log("All data: ", data);
+        addToMovieList(movieTitle,image,year)
     }else{
      
     }
-
-    
-      //addToMovieList()
-
+    $("#add-movie-form").trigger("reset");
     }
 
-
-    function addToMovieList(titel) {
-      const results = $("#movie-list");
-      const list = $("<li></li>")
-        .attr("movie-title", titel)
-
+    function addToMovieList(title,image, year) {
+      const listOfMovies = document.getElementById("movie-list");
+      const list = document.createElement("li");
+      list.setAttribute("movie-title", title);
+      list.textContent = title;
+      const imgElement = document.createElement("img")
+      imgElement.setAttribute("src", image);
+      imgElement.setAttribute("alt", title)
+      const spanElement = document.createElement("span");
+      spanElement.textContent = year;
+      
+      list.append(imgElement);
+      list.append(spanElement);
+      listOfMovies.append(list);
       
 
-
-
-      //results.append(list);
+      //Fixa så att det blir som en lista och inte stor bild OCH att den hämtar alla filmer som börjar med batman glömt inte återställa
 
     }
 

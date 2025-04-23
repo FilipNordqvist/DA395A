@@ -16,44 +16,50 @@
     <h1>MovieFinder - King of movies</h1>
     <h2 style="font-size:2vw">Sök efter filmen här</h2>
     <label for="search-field" style="font-size:1.5vw">Titel</label>
-    <input type="text" id="search-field" class="form-control" button onclick="getMovie(text)">
-    
+    <input type="text" id="search-field" class="form-control" onkeyup="getMovie()">
 
-</div>
-  
 
-<div class="container">
+  </div>
+
+
+  <div class="container">
     <h2>Sökresultat</h2>
     <ul id="movie-list">
 
     </ul>
-</div>
+  </div>
 
-<script>
+  <script>
 
-async function getMovie(text) {
-    const response = await fetch("http://www.omdbapi.com/?i=tt3896198&apikey=f9bc0366");
-    const data = await response.json();
-    console.log(data)
+    async function getMovie() {
+      const movieTitle = document.getElementById("search-field").value;
+      const response = await fetch("http://www.omdbapi.com/?t=" + movieTitle + "&apikey=f9bc0366&t");
+      const data = await response.json();
+      
+      
+      const bild = data.getElementById("Poster");
+      console.log("DETTA ÄR DATA?", bild)
+      //addToMovieList()
 
-}
-
-
-function addToMovieList(titel) {
-  const results = $("#movies-list");
-  const list = $("<li></li>")
-    .attr("movie-title", titel)
-  const image = $("<img>").attr("src", "./images/star.png").attr("alt", "Star")
-  
+    }
 
 
-  results.append(list);
-  
-}
+    function addToMovieList(titel) {
+      const results = $("#movie-list");
+      const list = $("<li></li>")
+        .attr("movie-title", titel)
 
-    
-</script>
-  
+      const image = $("<img>").attr("src", "./images/star.png").attr("alt", "Star")
+
+
+
+      results.append(list);
+
+    }
+
+
+  </script>
+
 </body>
 
 </html>

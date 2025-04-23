@@ -21,6 +21,12 @@ $("#newsletter-form").on("submit", function (e) {
     var epost = $("#email-field").val();
     $("#email-field").css("background-color", "white");
   }
+  if($("#name-field").val().length <= 0 && $("#age-field").val().length <= 0 
+  && $("#email-field").val().length <= 0){
+    $("#newsletter-form")[0].submit();
+  }else{
+    console.log("error")
+  }
   // Om allting var korrekt - skicka vidare användaren.
-  $("#newsletter-form")[0].submit();
+ 
 });

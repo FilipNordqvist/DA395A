@@ -4,19 +4,19 @@ $("#newsletter-form").on("submit", function (e) {
   e.preventDefault();
 
   if ($("#name-field").val().length <= 0) {
-    $("#name-field").css("background-color", "red");
+    $("#name-field").css("background-color", rgba(255, 0, 0, 1));
   } else {
     var name = $("#name-field").val();
     $("#name-field").css("background-color", "white");
   }
   if ($("#age-field").val().length <= 0) {
-    $("#age-field").css("background-color", "red");
+    $("#age-field").css("background-color", rgba(255, 0, 0, 1));
   } else {
     var age = $("#age-field").val();
     $("#age-field").css("background-color", "white");
   }
   if ($("#email-field").val().length <= 0) {
-    $("#email-field").css("background-color", "red");
+    $("#email-field").css("background-color", rgba(255, 0, 0, 1));
   } else {
     var epost = $("#email-field").val();
     $("#email-field").css("background-color", "white");

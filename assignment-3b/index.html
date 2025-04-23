@@ -16,7 +16,7 @@
     <h1>MovieFinder - King of movies</h1>
     <h2 style="font-size:2vw">Sök efter filmen här</h2>
     <label for="search-field" style="font-size:1.5vw">Titel</label>
-    <input type="text" id="search-field" class="form-control">
+    <input type="text" id="search-field" class="form-control" button onclick="getMovie(text)">
     
 
 </div>
@@ -30,6 +30,15 @@
 </div>
 
 <script>
+
+async function getMovie(text) {
+    const response = await fetch("http://www.omdbapi.com/?i=tt3896198&apikey=f9bc0366");
+    const data = await response.json();
+    console.log(data)
+
+}
+
+
 function addToMovieList(titel) {
   const results = $("#movies-list");
   const list = $("<li></li>")

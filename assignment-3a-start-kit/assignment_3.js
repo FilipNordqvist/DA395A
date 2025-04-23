@@ -26,16 +26,18 @@ function addToMovieList(titel, rating) {
     .attr("data-title", titel)
     .attr("data-grade", rating)
     .text(titel);
-  const imgDelete = $("<img>")
-    .attr("src", "./images/delete.png")
-    .attr("alt", "Delete movie")
-    .attr("class", "delete-movie-icon")
-    .on("click", list.remove());
   const stars = Array.from({ length: parseInt(rating) }, () =>
     $("<img>").attr("src", "./images/star.png").attr("alt", "Star")
   );
+  const deleteMovie = $("<img>")
+    .attr("src", "./images/delete.png")
+    .attr("alt", "Delete movie")
+    .attr("class", "delete-movie-icon")
+    .on("click", function () {
+      list.remove();
+    });
 
   movies.append(list);
-  movies.append(imgDelete);
-  movies.append(stars);
+  list.append(deleteMovie);
+  list.append(stars);
 }

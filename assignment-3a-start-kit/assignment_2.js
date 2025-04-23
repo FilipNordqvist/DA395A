@@ -21,12 +21,14 @@ $("#newsletter-form").on("submit", function (e) {
     var epost = $("#email-field").val();
     $("#email-field").css("background-color", "white");
   }
-  if($("#name-field").val().length <= 0 && $("#age-field").val().length <= 0 
-  && $("#email-field").val().length <= 0){
+
+  // Om allting var korrekt - skicka vidare användaren.
+  if($("#name-field").val().length > 0 &&
+  $("#age-field").val().length > 0 &&
+  $("#email-field").val().length > 0){
     $("#newsletter-form")[0].submit();
   }else{
-    console.log("error")
+    console.log("Fälten är inte ifyllda")
   }
-  // Om allting var korrekt - skicka vidare användaren.
- 
 });
+

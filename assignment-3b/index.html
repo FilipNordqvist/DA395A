@@ -40,16 +40,17 @@
         const response = await fetch("http://www.omdbapi.com/?s=" + input + "&apikey=f9bc0366&t");
         const data = await response.json();
         console.log(data);
-
-        //Om jag får ett Search-objekt hämta data annars fortsätt.
-        if (data.Search) {
+       
           for (let i = 0; i < data.Search.length; i++) {
             const image = data.Search.Poster;
+            console.log(image)
             const year = data.Search.Year;
+            console.log(year)
             const title = data.Search.Title;
+            console.log(image)
             addToMovieList(title, image, year)
           }
-        }
+        
       } else {
       }
     });

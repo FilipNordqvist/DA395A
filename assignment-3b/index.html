@@ -17,15 +17,10 @@
     <h2 style="font-size:2vw">Sök efter filmen här</h2>
     <label for="search-field" style="font-size:1.5vw">Titel</label>
     <input type="text" id="search-field" class="form-control">
-
-
   </div>
-
-
   <div class="container">
     <h2>Sökresultat</h2>
     <ul id="movie-list">
-
     </ul>
   </div>
 
@@ -40,17 +35,15 @@
         const response = await fetch("http://www.omdbapi.com/?s=" + input + "&apikey=f9bc0366&t");
         const data = await response.json();
         console.log(data);
-       
-          for (let i = 0; i < data.Search.length; i++) {
-            const image = data.Search.Poster;
-            console.log(image)
-            const year = data.Search.Year;
-            console.log(year)
-            const title = data.Search.Title;
-            console.log(image)
-            addToMovieList(title, image, year)
-          }
-        
+
+        for (let i = 0; i < data.Search.length; i++) {
+          const image = data.Search[i].Poster;
+          const year = data.Search[i].Year;
+          const title = data.Search[i].Title;
+
+          addToMovieList(title, image, year)
+
+        }
       } else {
       }
     });
@@ -87,8 +80,6 @@
     function clearMovieList() {
       document.getElementById("movie-list").innerHTML = "";
     }
-
-
   </script>
 
 </body>

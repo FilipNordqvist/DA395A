@@ -33,50 +33,58 @@
     document.getElementById("search-field").addEventListener('keyup', async event => {
       const input = event.target.value;
       console.log(input);
-      if(input.length >= 3){
-        const response = await fetch("http://www.omdbapi.com/?t=" + input + "&apikey=f9bc0366&t");
-        const data = await response.json();
-        const image = data.Poster;
-        const year = data.Year
 
-        addToMovieList(input,image,year)  
-    }else{
-     
-    }
-    
+      clearMovieList();
+
+      if (input.length >= 3) {
+        const response = await fetch("http://www.omdbapi.com/?s=" + input + "&apikey=f9bc0366&t");
+        const data = await response.json();
+        console.log(data);
+
+        //Om jag får ett Search-objekt hämta data annars fortsätt.
+        if (data.Search) {
+          for (let i = 0; i < data.Search.length; i++) {
+            const image = data.Search.Poster;
+            const year = data.Search.Year;
+            const title = data.Search.Title;
+            addToMovieList(title, image, year)
+          }
+        }
+      } else {
+      }
     });
 
-    function addToMovieList(title,image, year) {
+    function addToMovieList(title, image, year) {
       const listOfMovies = document.getElementById("movie-list");
       const list = document.createElement("li");
       list.setAttribute("movie-title", title);
       list.textContent = title;
-      list.style.listStyle="none"
-      list.style.backgroundColor="#eee"
-      list.style.height="150px"
-      list.style.boxShadow= "0 0 5px #999";
+      list.style.listStyle = "none"
+      list.style.backgroundColor = "#eee"
+      list.style.height = "150px"
+      list.style.boxShadow = "0 0 5px #999";
 
 
       const imgElement = document.createElement("img")
       imgElement.setAttribute("src", image);
       imgElement.setAttribute("alt", title);
-      imgElement.style.float="left"
-      imgElement.style.height= "150px";
-      imgElement.style.marginLeft="1px"
+      imgElement.style.float = "left"
+      imgElement.style.height = "150px";
+      imgElement.style.marginLeft = "1px"
 
-      
+
       const spanElement = document.createElement("span");
       spanElement.textContent = year;
-      spanElement.style.float="right";
-      
+      spanElement.style.float = "right";
+
       list.append(imgElement);
       list.append(spanElement);
       listOfMovies.append(list);
 
     }
 
-    function clearMovieList(){
-      document.getElementById("movie-list").value = "";
+    function clearMovieList() {
+      document.getElementById("movie-list").innerHTML = "";
     }
 
 

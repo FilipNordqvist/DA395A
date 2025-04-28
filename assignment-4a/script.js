@@ -55,7 +55,7 @@ function renderMovies() {
   var movies = getMovies();
   const moviesList = $("#movie-list");
 
-  $("#movie-list ul").html("");
+  $("#movie-list").html("");
 
   for (var i = 0; i < movies.length; i++) {
     const list = $("<li></li>")
@@ -94,7 +94,6 @@ e.preventDefault();
   var grade = "";
 
   
-  
   if ($("#title").val().length > 0) {
     title = $("#title").val();
   } else {
@@ -120,16 +119,9 @@ e.preventDefault();
 
   $("#new-movie-form").trigger("reset");
 
-  /*
-        Todo: När man klickar på knappen "Spara film" så ska funktionen:
-        1. Validera att man skrivit in en titel & valt ett betyg. Om inte
-        så ska vi visa upp (i en popup-ruta) ett meddelande om att både
-        titel & betyg måste fyllas i.
-        2. Lägga till en film i vår lista av filmer i localStorage
-        3. Visa den nya filmen i vår lista av filmer
-        4. Återställa formuläret (ingen titel, eller betyg valt)
-    */
 });
+
+renderMovies();
 
 $("#order-alphabetic").on("click", function () {
   /*
@@ -144,18 +136,21 @@ $("#order-grade").on("click", function () {
 });
 
 $("#movie-list").on("click", ".delete-movie", function () {   
-    const value = $(this).parent().data('title');
-    
-    
-
+    const title = $(this).parent().data('title');
    
-  
-  /*
-        Todo: Ska ta bort en film från:
-        1. Filmlistan i localStorage
-        2. Från filmlistan som visas på webbsidan
-    */
+   const allMovies = JSON.parse(localStorage.getItem('movies'))
+
+    for (let i = 0; i < allMovies.length;i++){
+        if(allMovies[i].title === title){
+            allMovies.splice(i,1)
+               }else{
+        }
+    }
+    
+    localStorage.setItem("movies", JSON.stringify(allMovies));
+    renderMovies();
 });
+
 
 // Skriver ut filmerna i vår lista när sidan laddats klart
 $(document).ready(function () {

@@ -1,6 +1,6 @@
 function printMovies(movies) {
     
-    movies.forEach((element) => console.log(element));
+    //movies.forEach((element) => console.log(element));
 
 
 
@@ -43,6 +43,7 @@ function getStars(rating) {
 }
 
 function saveMovies(movies) {
+    //Börja här-->
 
     /*
         Todo: Sparar filmerna till localStorage (JSON-format)
@@ -51,23 +52,24 @@ function saveMovies(movies) {
 $("#new-movie-form").on("submit", function (e) {
     e.preventDefault();
 
-    let titel = "";
-    let rating = "";
+    let title = "";
+    let grade = "";
   
     if ($("#title").val().length > 0) {
-      titel = $("#title").val();
+      title = $("#title").val();
     } else {
       alert("Ingen titel angiven");
     }
     if ($("#grade").val() > 0 && $("#grade").val() <= 5) {
-      rating = $("#grade").val();
+      grade = $("#grade").val();
     } else {
       alert("Ingen rating angiven");
     }
 
-    let movies = localStorage.setItem("title", "rating");
+    const movie= {title:title, grade: grade}
+    localStorage.setItem("movies",JSON.stringify(movie));
 
-    saveMovies(movies);
+    saveMovies(movie);
 
     $("#new-movie-form").trigger("reset");
     
@@ -99,7 +101,7 @@ $("#order-grade").on("click", function () {
 $("#movie-list").on("click", ".delete-movie", function () {
     
     localStorage.removeItem("movies");
-    loadMovies();
+    //loadMovies();
     /*
         Todo: Ska ta bort en film från:
         1. Filmlistan i localStorage

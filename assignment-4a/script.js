@@ -26,11 +26,16 @@ function loadMovies() {
         Todo: Filmerna ska snart laddas in från localStorage, men till
         en början nöjer vi oss med en vanlig array med filmer
     */
-    const movies = [
+        let jsonMovies = localStorage.getItem("movies");
+        let movies = JSON.parse(jsonMovies);
+        console.log("Loaded movies: ", movies);
+    
+    
+    /*    const movies = [
         { title: "Star Wars", grade: 5 },
         { title: "Titanic", grade: 4 },
         { title: "Drive", grade: 1 }
-    ];
+    ];*/
 
     return movies;
 }

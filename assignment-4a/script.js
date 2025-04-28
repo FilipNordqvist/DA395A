@@ -43,13 +43,34 @@ function getStars(rating) {
 }
 
 function saveMovies(movies) {
-    
 
     /*
         Todo: Sparar filmerna till localStorage (JSON-format)
     */}
 
 $("#new-movie-form").on("submit", function (e) {
+    e.preventDefault();
+
+    let titel = "";
+    let rating = "";
+  
+    if ($("#title").val().length > 0) {
+      titel = $("#title").val();
+    } else {
+      alert("Ingen titel angiven");
+    }
+    if ($("#grade").val() > 0 && $("#grade").val() <= 5) {
+      rating = $("#grade").val();
+    } else {
+      alert("Ingen rating angiven");
+    }
+
+    let movies = localStorage.setItem("title", "rating");
+
+    saveMovies(movies);
+
+    $("#new-movie-form").trigger("reset");
+    
     /*
         Todo: När man klickar på knappen "Spara film" så ska funktionen:
         1. Validera att man skrivit in en titel & valt ett betyg. Om inte
@@ -59,6 +80,7 @@ $("#new-movie-form").on("submit", function (e) {
         3. Visa den nya filmen i vår lista av filmer
         4. Återställa formuläret (ingen titel, eller betyg valt)
     */
+        
 });
 
 
@@ -75,6 +97,9 @@ $("#order-grade").on("click", function () {
 });
 
 $("#movie-list").on("click", ".delete-movie", function () {
+    
+    localStorage.removeItem("movies");
+    loadMovies();
     /*
         Todo: Ska ta bort en film från:
         1. Filmlistan i localStorage

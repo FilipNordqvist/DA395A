@@ -1,4 +1,9 @@
 function printMovies(movies) {
+    loadMovies.array.forEach(movies => {
+        console.log(movies)
+    });
+
+
     /*
         Todo: Skriv ut alla filmer i arrayen "movies". Varje film ska ha följande format:
 
@@ -12,6 +17,8 @@ function printMovies(movies) {
             <img src="delete.png" alt="Delete movie" class="delete-movie">
         </li>
     */
+
+
 }
 
 function loadMovies() {

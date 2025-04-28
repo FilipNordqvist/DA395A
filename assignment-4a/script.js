@@ -1,7 +1,7 @@
 function printMovies(movies) {
-    loadMovies.array.forEach(movies => {
-        console.log(movies)
-    });
+    
+    movies.forEach((element) => console.log(element));
+
 
 
     /*
@@ -43,6 +43,8 @@ function getStars(rating) {
 }
 
 function saveMovies(movies) {
+    
+
     /*
         Todo: Sparar filmerna till localStorage (JSON-format)
     */}

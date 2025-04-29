@@ -23,7 +23,7 @@ function success(position) {
 
   if (speed < 5) {
     $(".alert").css("background-color", "red");
-  } else if (speed > 5 && position.coords.speed < 10) {
+  } else if (speed > 5 && speed < 10) {
     $(".alert").css("background-color", "yellow");
   } else {
     $(".alert").css("background-color", "green");

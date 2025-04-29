@@ -18,11 +18,8 @@ function success(position) {
   $("#altitude").text(position.coords.altitude);
   $("#accuracy-altitude").text(position.coords.altitudeAccuracy);
   $("#speed").text(position.coords.speed);
-  const speed = position.coords.speed;
-  const calc = speed * 1000;
-  const convertToKm = calc * 3600;
-  console.log("Konventerar ", convertToKm);
-  $("#currect-speed").text(convertToKm + " km/h");
+  const speed = (position.coords.speed || 0) * 3.6;
+  $("#currect-speed").text(speed + " km/h");
 
   if (speed < 5) {
     $(".alert").css("background-color", "red");

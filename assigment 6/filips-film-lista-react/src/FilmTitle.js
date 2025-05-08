@@ -15,8 +15,9 @@ const ratingRef = useRef();
 function addItem(id){
 
         const newId = films.length > 0 ? films[films.length - 1].id + 1 : 1;
+        const rating =  parseInt(ratingRef.current.value);
         
-        if(inputRef.current.value.length > 0 && ratingRef > 0 && ratingRef <= 5){
+        if(inputRef.current.value.length > 0 && rating > 0 && rating <= 5){
             setFilms([...films, {
                 id: newId,
                 title: inputRef.current.value,
@@ -24,19 +25,13 @@ function addItem(id){
             }]);
             
             inputRef.current.value = "";
-            ratingRef.current.value ="";
+            ratingRef.current.value = "";
 
         }else if (inputRef.current.value.length === 0){
             alert("Du angav ingen titel")
         }else if(ratingRef.current.value.length === 0){
             alert("Du gav ingen rating")
-        }
-
-
-        
-
-      
-    
+        } 
 }
 
 
@@ -49,8 +44,7 @@ setFilms(films.filter((item) => item.id !== id))
             <label for="title-field">Titel:</label>
             <input className="form-control" type="text" id="title-field"  
             placeholder="Ange film titel här..." ref={inputRef}/>
-             <button type="submit" className="btn btn-success mt-3" 
-            onClick={addItem}>Spara film</button> 
+            
             
         
             <label for="rating-field">Betyg:</label>
@@ -62,6 +56,9 @@ setFilms(films.filter((item) => item.id !== id))
             <option value="4">4</option>
             <option value="5">5</option>
             </select>
+
+            <button type="submit" className="btn btn-success mt-3" 
+            onClick={addItem}>Spara film</button> 
             
             <ul className="list-group">
                 { films.map(film => <Film key={film.id} item={film} deleteItem={deleteItem}/>) }

@@ -7,7 +7,6 @@ function App() {
       <h1>Filips Film Lista</h1>
       <h2>Filmer</h2>
       <FilmTitle />
-      <FilmRating/>
 
     </div>
   );

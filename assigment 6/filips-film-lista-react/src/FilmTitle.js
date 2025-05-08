@@ -16,14 +16,26 @@ function addItem(id){
 
         const newId = films.length > 0 ? films[films.length - 1].id + 1 : 1;
         
-        setFilms([...films, {
-            id: newId,
-            title: inputRef.current.value,
-            rating: ratingRef.current.value,
-        }]);
+        if(inputRef.current.value.length > 0 && ratingRef > 0 && ratingRef <= 5){
+            setFilms([...films, {
+                id: newId,
+                title: inputRef.current.value,
+                rating: parseInt(ratingRef.current.value),
+            }]);
+            
+            inputRef.current.value = "";
+            ratingRef.current.value ="";
 
-        inputRef.current.value = "";
-        ratingRef.current.value ="";
+        }else if (inputRef.current.value.length === 0){
+            alert("Du angav ingen titel")
+        }else if(ratingRef.current.value.length === 0){
+            alert("Du gav ingen rating")
+        }
+
+
+        
+
+      
     
 }
 
@@ -36,11 +48,13 @@ setFilms(films.filter((item) => item.id !== id))
         <div>
             <label for="title-field">Titel:</label>
             <input className="form-control" type="text" id="title-field"  
-            placeholder="Ange film titel här..." ref={inputRef} onKeyUp={addItem}/>
+            placeholder="Ange film titel här..." ref={inputRef}/>
+             <button type="submit" className="btn btn-success mt-3" 
+            onClick={addItem}>Spara film</button> 
             
         
             <label for="rating-field">Betyg:</label>
-            <select id="rating-field" type="text" className="form-control" ref={ratingRef} onKeyUp={addItem}>
+            <select id="rating-field" type="text" className="form-control" ref={ratingRef}>
             <option value="0">Välj betyg här...</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -50,7 +64,7 @@ setFilms(films.filter((item) => item.id !== id))
             </select>
             
             <ul className="list-group">
-                { films.map(film => <Film key={film.id} item={film} deleteItem={deleteItem} addItem={addItem}/>) }
+                { films.map(film => <Film key={film.id} item={film} deleteItem={deleteItem}/>) }
             </ul>
         </div>
     )

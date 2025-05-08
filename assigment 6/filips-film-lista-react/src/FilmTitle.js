@@ -10,10 +10,6 @@ export default function FilmList(){
 
 const inputRef = useRef();
 
-function addItem(event){
-if(event.on)
-}
-
     return (
         <div>
             <label for="title-field">Titel:</label>

@@ -4,15 +4,16 @@ import Film from "./Film";
 export default function FilmList(){
     const [films, setFilms] = useState([{
         id: 1,
-        title: "Första filmen"
+        title: "Filmen filmen?",
+        rating: 2,
     }
 ]);
 
 const inputRef = useRef();
 const ratingRef = useRef();
 
-function addItem(event){
-    if(event.keyCode === 13){
+function addItem(id){
+
         const newId = films.length > 0 ? films[films.length - 1].id + 1 : 1;
         
         setFilms([...films, {
@@ -22,11 +23,13 @@ function addItem(event){
         }]);
 
         inputRef.current.value = "";
-    }
+        ratingRef.current.value ="";
+    
 }
 
-function deleteItem(id){
 
+function deleteItem(id){
+setFilms(films.filter((item) => item.id !== id))
 }
 
     return (
@@ -47,7 +50,7 @@ function deleteItem(id){
             </select>
             
             <ul className="list-group">
-                { films.map(film => <Film key={film.id} item={film}/>) }
+                { films.map(film => <Film key={film.id} item={film} deleteItem={deleteItem} addItem={addItem}/>) }
             </ul>
         </div>
     )
